@@ -221,3 +221,9 @@ dashboard.
 - Per-client rules / allowlists; regex blocklists; scheduled block groups.
 - Prometheus metrics + a queries/sec benchmark.
 - An LRU bound on the cache and prefetch-on-near-expiry.
+
+---
+
+## License
+
+[MIT](LICENSE) © Shahab Qadeer
