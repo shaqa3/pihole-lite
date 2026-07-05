@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "DNS: Start",
+      "type": "shell",
+      "command": "./start.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(play) DNS Start",
+          "tooltip": "Start the DNS server + dashboard and open it in the browser",
+          "color": "#3fb950"
+        }
+      }
+    },
+    {
+      "label": "DNS: Start + demo traffic",
+      "type": "shell",
+      "command": "DEMO=1 ./start.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(pulse) DNS Demo",
+          "tooltip": "Start the server and stream demo traffic so the dashboard is lively",
+          "color": "#58a6ff"
+        }
+      }
+    },
+    {
+      "label": "DNS: Stop",
+      "type": "shell",
+      "command": "./stop.sh",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      },
+      "options": {
+        "statusbar": {
+          "label": "$(debug-stop) DNS Stop",
+          "tooltip": "Stop the DNS server + dashboard",
+          "color": "#f85149"
+        }
+      }
+    }
+  ]
+}

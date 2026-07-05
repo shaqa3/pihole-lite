@@ -43,6 +43,20 @@ domains are blocked in ~0 ms before any network I/O. Regenerate it any time with
 
 ## Quick start
 
+Fastest path — the helper scripts start the server + dashboard and open it:
+
+```bash
+./start.sh            # boots the resolver + dashboard, opens http://127.0.0.1:8080
+DEMO=1 ./start.sh     # ...and streams demo traffic so the dashboard is lively
+./stop.sh             # stop it (frees the ports)
+```
+
+In **VS Code**, the same actions are one click away: install the recommended
+`actboy168.tasks` extension and use the **DNS Start / Demo / Stop** buttons in
+the status bar (or Run Task, or ⇧⌘B to start). See [`.vscode/tasks.json`](.vscode/tasks.json).
+
+Or run the module directly for full control:
+
 ```bash
 # Recursive-from-root resolver + ad-blocking + dashboard (dev ports, no root):
 python -m dns_server.main \

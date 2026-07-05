@@ -8,6 +8,12 @@ Everything below assumes you're in the project directory. The **dev port is
 ## Start the server
 
 ```bash
+# Easiest: helper scripts (also open the dashboard). VS Code: status-bar buttons.
+./start.sh                 # server + dashboard → http://127.0.0.1:8080
+DEMO=1 ./start.sh          # + stream demo traffic
+WEB_PORT=9000 ./start.sh   # override the dashboard port
+./stop.sh                  # stop (frees the ports)
+
 # Recursive-from-root + ad-blocking + dashboard (dev port, no sudo)
 python3 -m dns_server.main --port 15353 --web-port 8080 --blocklist blocklists/sample.txt
 
