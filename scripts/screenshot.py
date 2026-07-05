@@ -14,7 +14,7 @@ live feed to populate, and writes a PNG.
     python scripts/screenshot.py                       # → docs/dashboard.png
 
     # or screenshot a server you already have running
-    python scripts/screenshot.py --url http://127.0.0.1:8080 --no-server
+    python scripts/screenshot.py --url http://127.0.0.1:8053 --no-server
 
 Options: --out, --web-port, --dns-port, --host, --width, --scale, --seconds.
 """

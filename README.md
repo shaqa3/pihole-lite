@@ -21,7 +21,7 @@ testing; Docker is optional.
 │  your OS)│ ◄─────────────── │         └─ Cache ────────┘                 │
 └──────────┘                  │  every query → Stats ─► SSE ─► Dashboard   │
                               └───────────────────────────────────────────┘
-                                                          http://…:8080
+                                                          http://…:8053
 ```
 
 ---
@@ -46,7 +46,7 @@ domains are blocked in ~0 ms before any network I/O. Regenerate it any time with
 Fastest path — the helper scripts start the server + dashboard and open it:
 
 ```bash
-./start.sh            # boots the resolver + dashboard, opens http://127.0.0.1:8080
+./start.sh            # boots the resolver + dashboard, opens http://127.0.0.1:8053
 DEMO=1 ./start.sh     # ...and streams demo traffic so the dashboard is lively
 ./stop.sh             # stop it (frees the ports)
 ```
@@ -61,7 +61,7 @@ Or run the module directly for full control:
 ```bash
 # Recursive-from-root resolver + ad-blocking + dashboard (dev ports, no root):
 python -m dns_server.main \
-    --port 15353 --web-port 8080 \
+    --port 15353 --web-port 8053 \
     --blocklist blocklists/sample.txt
 
 # In another terminal — query it:
@@ -70,7 +70,7 @@ dig @127.0.0.1 -p 15353 doubleclick.net      # blocked → 0.0.0.0
 dig @127.0.0.1 -p 15353 example.com          # again → served from cache (lower TTL)
 
 # Open the dashboard:
-open http://127.0.0.1:8080
+open http://127.0.0.1:8053
 
 # ...and feed it a steady stream of realistic traffic to watch:
 ./demo-traffic.sh
@@ -84,7 +84,7 @@ Prefer to lean on a fast upstream instead of walking the root yourself?
 
 ```bash
 python -m dns_server.main --mode forward --upstream 1.1.1.1 \
-    --port 15353 --web-port 8080 --blocklist blocklists/sample.txt
+    --port 15353 --web-port 8053 --blocklist blocklists/sample.txt
 ```
 
 ### Run it for real (port 53)
@@ -93,7 +93,7 @@ Port 53 is privileged, so binding it needs root. Point **one machine** at it
 first — don't reconfigure your whole LAN until you trust it.
 
 ```bash
-sudo python -m dns_server.main --host 0.0.0.0 --port 53 --web-port 8080 \
+sudo python -m dns_server.main --host 0.0.0.0 --port 53 --web-port 8053 \
     --blocklist blocklists/sample.txt
 # Then set that machine's DNS server to this host's IP.
 ```
@@ -102,7 +102,7 @@ sudo python -m dns_server.main --host 0.0.0.0 --port 53 --web-port 8080 \
 
 ```bash
 docker compose up --build
-# DNS on :53 (UDP+TCP), dashboard on http://localhost:8080
+# DNS on :53 (UDP+TCP), dashboard on http://localhost:8053
 ```
 
 ---

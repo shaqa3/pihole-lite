@@ -9,23 +9,23 @@ Everything below assumes you're in the project directory. The **dev port is
 
 ```bash
 # Easiest: helper scripts (also open the dashboard). VS Code: status-bar buttons.
-./start.sh                 # server + dashboard → http://127.0.0.1:8080
+./start.sh                 # server + dashboard → http://127.0.0.1:8053
 DEMO=1 ./start.sh          # + stream demo traffic
 WEB_PORT=9000 ./start.sh   # override the dashboard port
 ./stop.sh                  # stop (frees the ports)
 
 # Recursive-from-root + ad-blocking + dashboard (dev port, no sudo)
-python3 -m dns_server.main --port 15353 --web-port 8080 --blocklist blocklists/sample.txt
+python3 -m dns_server.main --port 15353 --web-port 8053 --blocklist blocklists/sample.txt
 
 # Forwarding mode instead (let 1.1.1.1 do the recursion; faster to start)
-python3 -m dns_server.main --port 15353 --web-port 8080 \
+python3 -m dns_server.main --port 15353 --web-port 8053 \
     --mode forward --upstream 1.1.1.1 --blocklist blocklists/sample.txt
 
 # Block with NXDOMAIN instead of a 0.0.0.0 sinkhole
 python3 -m dns_server.main --port 15353 --block-mode nxdomain --blocklist blocklists/sample.txt
 
 # For real, on port 53 (privileged → needs sudo), reachable on your LAN
-sudo python3 -m dns_server.main --host 0.0.0.0 --port 53 --web-port 8080 \
+sudo python3 -m dns_server.main --host 0.0.0.0 --port 53 --web-port 8053 \
     --blocklist blocklists/sample.txt
 
 # See all options
@@ -62,10 +62,10 @@ section), `+stats` (timing), `+tries=1 +time=2` (fail fast).
 ## Watch it work
 
 ```bash
-open http://127.0.0.1:8080                         # the live dashboard (macOS)
+open http://127.0.0.1:8053                         # the live dashboard (macOS)
 
-curl -s http://127.0.0.1:8080/api/stats | python3 -m json.tool   # JSON snapshot
-curl -N  http://127.0.0.1:8080/events              # raw live event stream (SSE)
+curl -s http://127.0.0.1:8053/api/stats | python3 -m json.tool   # JSON snapshot
+curl -N  http://127.0.0.1:8053/events              # raw live event stream (SSE)
 ```
 
 ## Regenerate the dashboard screenshot
@@ -74,7 +74,7 @@ curl -N  http://127.0.0.1:8080/events              # raw live event stream (SSE)
 python -m pip install -r requirements-dev.txt   # playwright
 playwright install chromium                     # one-time browser download
 python scripts/screenshot.py                    # boots server, drives traffic → docs/dashboard.png
-python scripts/screenshot.py --url http://127.0.0.1:8080 --no-server   # shoot a running instance
+python scripts/screenshot.py --url http://127.0.0.1:8053 --no-server   # shoot a running instance
 ```
 
 ## Run the tests
@@ -92,7 +92,7 @@ print('all tests passed')"
 ## Docker
 
 ```bash
-docker compose up --build                          # DNS :53 + dashboard :8080
+docker compose up --build                          # DNS :53 + dashboard :8053
 docker compose up -d                               # detached
 docker compose logs -f                             # follow logs
 docker compose down                                # stop

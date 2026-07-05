@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Stop the DNS server + dashboard by freeing its ports.
 #
-# Usage:  ./stop.sh                 # frees dashboard :8080 and DNS :15353
+# Usage:  ./stop.sh                 # frees dashboard :8053 and DNS :15353
 #         WEB_PORT=9000 DNS_PORT=53 ./stop.sh
 set -euo pipefail
 
-WEB_PORT="${WEB_PORT:-8080}"
+WEB_PORT="${WEB_PORT:-8053}"
 DNS_PORT="${DNS_PORT:-15353}"
 
 is_our_server() {  # true only if the pid is running `python -m dns_server.main`

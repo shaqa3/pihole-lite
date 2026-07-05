@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Start the DNS server + live dashboard and open it in the browser.
 #
-# Usage:  ./start.sh                 # dashboard :8080, DNS :15353 (dev ports)
+# Usage:  ./start.sh                 # dashboard :8053, DNS :15353 (dev ports)
 #         WEB_PORT=9000 ./start.sh   # override the dashboard port
 #         DNS_PORT=53 ./start.sh     # DNS on :53 (needs sudo)
 #         DEMO=1 ./start.sh          # also stream demo traffic so it's lively
@@ -12,7 +12,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR"
 
 HOST="${HOST:-127.0.0.1}"
-WEB_PORT="${WEB_PORT:-8080}"
+WEB_PORT="${WEB_PORT:-8053}"
 DNS_PORT="${DNS_PORT:-15353}"
 MODE="${MODE:-recursive}"
 BLOCKLIST="${BLOCKLIST:-blocklists/sample.txt}"

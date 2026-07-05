@@ -28,7 +28,7 @@ log = logging.getLogger("dns.web")
 
 
 class WebServer:
-    def __init__(self, stats, static_dir: Path, host: str = "127.0.0.1", port: int = 8080):
+    def __init__(self, stats, static_dir: Path, host: str = "127.0.0.1", port: int = 8053):
         self.stats = stats
         self.static_dir = Path(static_dir)
         self.host = host

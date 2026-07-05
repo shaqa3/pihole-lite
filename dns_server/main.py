@@ -1,7 +1,7 @@
 """
 The composition root: wire every layer together and run the whole thing.
 
-    python -m dns_server.main --port 15353 --web-port 8080 \
+    python -m dns_server.main --port 15353 --web-port 8053 \
         --blocklist blocklists/sample.txt --mode recursive
 
 Resolver stack (outermost first — the order a query flows through):
@@ -70,7 +70,7 @@ def main():
     p = argparse.ArgumentParser(description="A from-scratch DNS server + ad-blocker.")
     p.add_argument("--host", default="127.0.0.1", help="bind address (0.0.0.0 for LAN/Docker)")
     p.add_argument("--port", type=int, default=15353, help="DNS port (53 needs root)")
-    p.add_argument("--web-port", type=int, default=8080, help="dashboard HTTP port")
+    p.add_argument("--web-port", type=int, default=8053, help="dashboard HTTP port")
     p.add_argument("--mode", choices=["recursive", "forward"], default="recursive",
                    help="recursive-from-root, or forward to an upstream resolver")
     p.add_argument("--upstream", action="append", default=None,

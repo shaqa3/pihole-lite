@@ -39,7 +39,7 @@ if ! command -v dig >/dev/null 2>&1; then
 fi
 
 echo "▶ sending demo traffic to ${HOST}:${PORT}  (Ctrl-C to stop)"
-echo "  dashboard → http://${HOST%:*}:8080"
+echo "  dashboard → http://${HOST%:*}:8053"
 echo
 
 pick() { local arr=("$@"); echo "${arr[$((RANDOM % ${#arr[@]}))]}"; }
