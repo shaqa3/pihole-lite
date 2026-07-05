@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:   # allow manual runs from the Actions tab
+
+jobs:
+  test:
+    name: tests (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The server needs Python 3.11+ (loop.sock_recv on datagram sockets).
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # The server itself has ZERO runtime dependencies; pytest is the only
+      # thing CI needs to install.
+      - name: Install pytest
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Run tests
+        run: pytest -q
+
+      # Smoke test: the whole stack must import and the CLI must respond.
+      - name: Import + CLI smoke check
+        run: |
+          python -c "import dns_server.main, dns_server.server, dns_server.wire, dns_server.resolver"
+          python -m dns_server.main --help > /dev/null
