@@ -1,0 +1,15 @@
+services:
+  dns:
+    build: .
+    container_name: pihole-lite
+    restart: unless-stopped
+    ports:
+      # host:container — DNS on 53 (both transports), dashboard on 8080.
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "8080:8080/tcp"
+    # To point a machine at this server, set its DNS to the Docker host's IP.
+    # Override the default command to e.g. switch to forwarding mode:
+    #   command: ["--host","0.0.0.0","--port","53","--web-port","8080",
+    #             "--mode","forward","--upstream","1.1.1.1",
+    #             "--blocklist","blocklists/sample.txt"]

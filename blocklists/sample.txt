@@ -1,0 +1,13 @@
+# Sample blocklist (hosts + plain-domain formats both work).
+# Real-world lists: StevenBlack/hosts, oisd.nl, EasyList-derived lists.
+# Format is either "0.0.0.0 domain" (hosts) or just "domain".
+
+# --- hosts format (the sinkhole IP is ignored; only the domain matters) ---
+0.0.0.0 doubleclick.net
+0.0.0.0 google-analytics.com
+0.0.0.0 ads.example.com
+
+# --- plain domain format ---
+googlesyndication.com
+scorecardresearch.com
+adservice.google.com

@@ -1,0 +1,6 @@
+# This project is intentionally ZERO-dependency — everything runs on the Python
+# standard library (asyncio for the servers, socket/struct for the wire codec).
+#
+# The only external tool you need is `dig` (from bind-tools / dnsutils) to test,
+# and Docker if you want to containerise. Requires Python 3.11+ (for
+# loop.sock_recv on datagram sockets).
