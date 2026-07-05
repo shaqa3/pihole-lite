@@ -52,8 +52,9 @@ DEMO=1 ./start.sh     # ...and streams demo traffic so the dashboard is lively
 ```
 
 In **VS Code**, the same actions are one click away: install the recommended
-`actboy168.tasks` extension and use the **DNS Start / Demo / Stop** buttons in
-the status bar (or Run Task, or ⇧⌘B to start). See [`.vscode/tasks.json`](.vscode/tasks.json).
+`actboy168.tasks` extension and use the **DNS Start / Traffic / Stop** buttons in
+the status bar (or Run Task, or ⇧⌘B to start). Start, then click **Traffic** to
+stream demo lookups into the live dashboard. See [`.vscode/tasks.json`](.vscode/tasks.json).
 
 Or run the module directly for full control:
 

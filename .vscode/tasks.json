@@ -24,9 +24,9 @@
       }
     },
     {
-      "label": "DNS: Start + demo traffic",
+      "label": "DNS: Demo traffic",
       "type": "shell",
-      "command": "DEMO=1 ./start.sh",
+      "command": "./demo-traffic.sh",
       "problemMatcher": [],
       "presentation": {
         "reveal": "always",
@@ -35,8 +35,8 @@
       },
       "options": {
         "statusbar": {
-          "label": "$(pulse) DNS Demo",
-          "tooltip": "Start the server and stream demo traffic so the dashboard is lively",
+          "label": "$(pulse) DNS Traffic",
+          "tooltip": "Stream demo traffic to the running server (start it first) — Ctrl+C to stop",
           "color": "#58a6ff"
         }
       }
