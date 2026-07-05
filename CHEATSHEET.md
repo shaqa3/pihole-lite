@@ -62,6 +62,15 @@ curl -s http://127.0.0.1:8080/api/stats | python3 -m json.tool   # JSON snapshot
 curl -N  http://127.0.0.1:8080/events              # raw live event stream (SSE)
 ```
 
+## Regenerate the dashboard screenshot
+
+```bash
+python -m pip install -r requirements-dev.txt   # playwright
+playwright install chromium                     # one-time browser download
+python scripts/screenshot.py                    # boots server, drives traffic → docs/dashboard.png
+python scripts/screenshot.py --url http://127.0.0.1:8080 --no-server   # shoot a running instance
+```
+
 ## Run the tests
 
 ```bash

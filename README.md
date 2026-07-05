@@ -27,11 +27,13 @@ testing; Docker is optional.
 The live dashboard — real query stream, blocked %, cache hit rate, and top
 domains, all updating over Server-Sent Events as queries arrive:
 
-![DNS resolver live dashboard: KPI tiles for queries, blocked %, cache hit rate and average latency; a streaming query log showing resolved / cached / blocked results; and top-blocked and top-resolved domain lists.](docs/dashboard.svg)
+![DNS resolver live dashboard: KPI tiles for queries, blocked %, cache hit rate and average latency; a streaming query log showing resolved / cached / blocked results per client; and top-blocked and top-resolved domain lists.](docs/dashboard.png)
 
-<sub>Rendered from real traffic captured off the running resolver. Resolved
-names walk root→authoritative (~150 ms), cache hits return in ~0.05 ms, and
-ad/tracker domains are blocked in ~0.02 ms before any network I/O.</sub>
+<sub>A real headless-Chromium capture of the running dashboard. Resolved names
+walk root→authoritative (~150 ms), cache hits return in ~0.1 ms, and ad/tracker
+domains are blocked in ~0 ms before any network I/O. Regenerate it any time with
+<code>python scripts/screenshot.py</code> (see
+<a href="requirements-dev.txt">requirements-dev.txt</a>).</sub>
 
 ---
 

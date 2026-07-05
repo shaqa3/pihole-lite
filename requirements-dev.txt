@@ -1,0 +1,6 @@
+# Dev-only tools. The server itself needs NONE of these — see requirements.txt.
+# Used by scripts/screenshot.py to capture the dashboard with headless Chromium.
+#
+#   python -m pip install -r requirements-dev.txt
+#   playwright install chromium
+playwright>=1.40
