@@ -24,11 +24,19 @@ open_browser() {
   else echo "Open this URL manually: $URL"; fi
 }
 
-# Already running? Just open the dashboard.
-if lsof -ti "tcp:${WEB_PORT}" >/dev/null 2>&1; then
-  echo "Dashboard already running — opening ${URL}"
-  open_browser
-  exit 0
+# Is the port already taken? If it's OUR server, just open it. If it's some
+# other app, bail with a clear message rather than fighting over the port.
+holder="$(lsof -ti "tcp:${WEB_PORT}" -sTCP:LISTEN 2>/dev/null | head -1 || true)"
+if [ -n "$holder" ]; then
+  if ps -p "$holder" -o command= 2>/dev/null | grep -q 'dns_server\.main'; then
+    echo "Dashboard already running — opening ${URL}"
+    open_browser
+    exit 0
+  fi
+  cmd="$(ps -p "$holder" -o comm= 2>/dev/null || echo unknown)"
+  echo "Port ${WEB_PORT} is in use by another app (pid ${holder}: ${cmd})." >&2
+  echo "Pick a free port, e.g.:  WEB_PORT=8899 ./start.sh" >&2
+  exit 1
 fi
 
 echo "Starting DNS server (dns :${DNS_PORT}, dashboard :${WEB_PORT}, mode=${MODE})"
