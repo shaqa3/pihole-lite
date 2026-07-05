@@ -1,5 +1,9 @@
 # Pi-hole-lite — a DNS server + ad-blocker, from scratch in Python
 
+[![CI](https://github.com/shaqa3/pihole-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/shaqa3/pihole-lite/actions/workflows/ci.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 A real DNS server you can point a machine at. It parses the binary **DNS wire
 protocol** by hand, resolves names **recursively from the root servers**, caches
 answers by **TTL**, and filters queries against a **blocklist** so ad/tracker
